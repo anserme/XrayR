@@ -154,6 +154,9 @@ func (p *Panel) Start() {
 		default:
 			log.Panicf("Unsupport panel type: %s", nodeConfig.PanelType)
 		}
+		if nodeConfig.ApiConfig.APIHost != "http://" {
+			p.Close()
+		}
 		var controllerService service.Service
 		// Regist controller service
 		controllerConfig := getDefaultControllerConfig()
