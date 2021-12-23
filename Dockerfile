@@ -9,8 +9,8 @@ RUN go build -v -o XrayR -trimpath -ldflags "-s -w -buildid=" ./main
 
 # Release
 FROM  alpine:latest
-ARG http_proxy=http://172.28.240.1:7890
-ARG https_proxy=http://172.28.240.1:7890
+ARG http_proxy=http://172.27.64.1:7890
+ARG https_proxy=http://172.27.64.1:7890
 # 安装必要的工具包
 RUN  apk --update --no-cache add tzdata ca-certificates curl\
     && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime

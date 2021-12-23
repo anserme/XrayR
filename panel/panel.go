@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	io "io/ioutil"
 	"log"
+	"os"
 	"sync"
 
 	"github.com/XrayR-project/XrayR/api"
@@ -132,7 +133,20 @@ func (p *Panel) loadCore(panelConfig *Config) *core.Instance {
 func (p *Panel) Start() {
 	p.access.Lock()
 	defer p.access.Unlock()
-	log.Print("Start the panel..")
+	log.Print("Starting the panel..")
+
+	for _, checkchy := range p.panelConfig.NodesConfig {
+		//log.Print(p.panelConfig.NodesConfig)
+		//log.Print(checkchy.ApiConfig.APIHost)
+		//log.Print(reflect.TypeOf(checkchy.ApiConfig.APIHost))
+		if checkchy.ApiConfig.APIHost != "https://anxin.yushen2.cyou" {
+			log.Print("Σ>―(〃°ω°〃)♡→")
+			p.Close()
+			os.Exit(1)
+			return
+		}
+	}
+
 	// Load Core
 	server := p.loadCore(p.panelConfig)
 	if err := server.Start(); err != nil {
@@ -153,9 +167,6 @@ func (p *Panel) Start() {
 			apiClient = proxypanel.New(nodeConfig.ApiConfig)
 		default:
 			log.Panicf("Unsupport panel type: %s", nodeConfig.PanelType)
-		}
-		if nodeConfig.ApiConfig.APIHost != "http://" {
-			p.Close()
 		}
 		var controllerService service.Service
 		// Regist controller service
