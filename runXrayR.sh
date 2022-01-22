@@ -60,6 +60,11 @@ if [ ! -z "${cert_mode}" ]
       sed -i "s|CertMode: dns|CertMode: ${cert_mode}|g" "/etc/XrayR/config.yml"
 fi
 
+if [ ! -z "${log_level}" ]
+    then
+      sed -i "s|Level: none|Level: ${log_level}|g" "/etc/XrayR/config.yml"
+fi
+
 if [ ! -z "${dns_mode}" ]
     then
       sed -i "s|Provider: cloudflare|Provider: ${dns_mode}|g" "/etc/XrayR/config.yml"

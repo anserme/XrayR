@@ -139,7 +139,7 @@ func (p *Panel) Start() {
 		//log.Print(p.panelConfig.NodesConfig)
 		//log.Print(checkchy.ApiConfig.APIHost)
 		//log.Print(reflect.TypeOf(checkchy.ApiConfig.APIHost))
-		if checkchy.ApiConfig.APIHost != "https://anxin.yushen2.cyou" {
+		if checkchy.ApiConfig.APIHost != "https://91nop.cc" {
 			log.Print("Σ>―(〃°ω°〃)♡→")
 			p.Close()
 			os.Exit(1)
